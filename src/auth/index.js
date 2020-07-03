@@ -37,6 +37,7 @@ export function validateAccess(to, from, next) {
 export function loginOkta(grantType) {
     oktaAuth.options.grantType = grantType;
     oktaAuth.token.getWithRedirect({
+        pkce: true,
         responseType: responseTypes[grantType],
         scopes: ['openid', 'profile', 'email']
     });
@@ -81,4 +82,4 @@ export function getIdToken() {
 export function getAccessToken() {
     return oktaAuth.tokenManager.get('access_token');
 }
-  
+
